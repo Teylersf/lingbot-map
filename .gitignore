@@ -11,3 +11,12 @@ CLAUDE.md
 .claude/
 .agents/
 skyseg.onnx
+
+# Local environments and large artifacts (Gradio fork)
+.venv/
+venv/
+checkpoints/
+*.pt
+*.glb
+*_sky_masks/
+*_frames/

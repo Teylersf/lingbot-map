@@ -22,6 +22,46 @@ https://github.com/user-attachments/assets/fe39e095-af2c-4ec9-b68d-a8ba97e505ab
 
 -----
 
+## ⚡ One-click Gradio UI (this fork)
+
+> 🆕 **This fork ships a browser-based Gradio app** so you can drop a video or
+> a folder of images, click **Run**, and view (and download) the reconstructed
+> point cloud as a `.glb` — no viser, no command line needed.
+
+```bash
+# Windows (one-shot setup, downloads PyTorch + checkpoint + deps automatically)
+setup.bat
+run_app.bat        # opens http://localhost:7860
+# add --share for a public Gradio link
+```
+
+```bash
+# Manual setup, any platform with an NVIDIA GPU
+uv venv --python 3.10 .venv
+.venv/Scripts/python.exe -m pip install torch==2.8.0 torchvision==0.23.0 \
+    --index-url https://download.pytorch.org/whl/cu128
+.venv/Scripts/python.exe -m pip install -e ".[vis]" gradio onnxruntime
+.venv/Scripts/python.exe app.py        # http://localhost:7860
+```
+
+**Features in the UI**
+
+- Three input modes: video upload, image upload, or one of the bundled
+  `example/` scenes (courthouse / loop / oxford / university).
+- Auto-downloads the `lingbot-map-long.pt` checkpoint (4.6 GB) from
+  HuggingFace on first run.
+- Defaults to **SDPA** attention so FlashInfer is not required — works out of
+  the box on Windows / WSL / Linux.
+- Result is rendered inline via Gradio's `Model3D` widget and downloadable
+  as a single `.glb` you can open in Blender, three.js, or any GLTF viewer.
+
+See [GRADIO_README.md](GRADIO_README.md) for tips, knobs, and troubleshooting.
+
+If this is useful to you, **please star ⭐ the repo** — it helps others find
+it.
+
+-----
+
 ### 🗺️ Meet LingBot-Map! We've built a feed-forward 3D foundation model for streaming 3D reconstruction! 🏗️🌍
 
 LingBot-Map has focused on:
